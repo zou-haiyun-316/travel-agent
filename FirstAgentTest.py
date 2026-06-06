@@ -189,11 +189,15 @@ class OpenAICompatibleClient:
 # 注意：Tavily API Key 通过环境变量传递给 get_attraction 函数。
 # ============================================================
 
-API_KEY = os.environ.get("DEEPSEEK_API_KEY", "sk-8e016ce77b7e4e69a2594642313ced23")
+# 从 .env 文件中读取本地密钥（该文件已加入 .gitignore，不会上传到 GitHub）
+from dotenv import load_dotenv
+load_dotenv()
+
+API_KEY = os.environ.get("DEEPSEEK_API_KEY", "请设置 DEEPSEEK_API_KEY 环境变量")
 BASE_URL = os.environ.get("DEEPSEEK_BASE_URL", "https://api.deepseek.com")
 MODEL_ID = os.environ.get("DEEPSEEK_MODEL_ID", "deepseek-v4-flash")
 if "TAVILY_API_KEY" not in os.environ:
-    os.environ['TAVILY_API_KEY'] = "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"
+    os.environ['TAVILY_API_KEY'] = "请设置 TAVILY_API_KEY 环境变量"
 
 # 实例化 LLM 客户端——创建智能体的"大脑"
 llm = OpenAICompatibleClient(
